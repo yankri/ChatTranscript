@@ -132,6 +132,7 @@ hr {
 .dialogue {
     display: flex;
     margin: 20px;
+    line-height: 25px;
 }
 /*wrapper class for the username and timestamp*/
 .bubble-footer {

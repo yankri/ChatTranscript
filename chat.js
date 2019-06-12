@@ -5,15 +5,12 @@ let endpoint = 'https://api.myjson.com/bins/18ce70';
 
 //async call to get the conversation transcript from the API endpoint
 async function getConversationTranscript() {
-    //fetch the data
     let response = await fetch(endpoint);
-    //resolve the data and log errors to the console
     let data = await response.json().catch(x => console.log(x));
     //return just the data portion that we need and not the response code etc.
     return data.data;
 }
 
-//page intialization function
 async function initializePage() {
     //make the call to the API endpoint to get the conversation history and set it to the local variable
     //to make it easier to work with the actual data and avoid the other response properties
@@ -24,7 +21,6 @@ async function initializePage() {
     //Primary user is decided based on who the first message is from.
     let primaryUser = transcript.messages[0].username;
 
-    //generate the chat transcript markup
     let transcriptOutput = createChatTranscriptMarkup(primaryUser, transcript.messages);
 
     //set the conversation date in the page header
@@ -51,6 +47,7 @@ function formatMessageTimestamp(timestamp){
     return new Intl.DateTimeFormat('en-US', {hour: 'numeric', minute: 'numeric'}).format(messageDate)
 }
 
+//generate the html for the transcript
 //parameter "primary user": the username of the first user
 //parmaeter "messages": the array of messages from the transcript
 function createChatTranscriptMarkup(primaryUser, messages){
@@ -59,7 +56,6 @@ function createChatTranscriptMarkup(primaryUser, messages){
 
     //loop through the messages and generate the html markup as an array of strings
     for (let message of messages) {
-        //determine if the message is focused or not and add that class to the markup
         message.isfocused = message.focused ? "bubble-focused" : "";
 
         //For formatting reasons, two templates made the most sense. This way we can generate the markup easily for either participant.
@@ -104,5 +100,4 @@ function createChatTranscriptMarkup(primaryUser, messages){
     return transcriptOutput;
 }
 
-//initialize the page
 initializePage();
