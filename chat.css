@@ -1,173 +1,171 @@
 html {
-    font-family: 'Roboto', sans-serif;
-    background-color: #ededed;
+  font-family: "Roboto", sans-serif;
+  background-color: #ededed;
 }
 body {
-    margin: 50px;
-    padding: 50px;
-    background-color: #ffffff;
-    width: 800px;
-    margin: 50px auto;
+  margin: 50px;
+  padding: 50px;
+  background-color: #ffffff;
+  width: 800px;
+  margin: 50px auto;
 }
 /********************/
 /* HEADER FORMATTING*/
 /********************/
 header {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: baseline;
-    height: 80px;
-    line-height: 29px;
-    justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: baseline;
+  height: 80px;
+  line-height: 29px;
+  justify-content: space-between;
 }
 /*"Chat Transcript" formatting, including letter spacing to give increased kerning effect*/
 #title {
-    text-transform: uppercase;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 18px;
-    font-weight: lighter;
-    align-self: flex-end;
-    letter-spacing: 5px;
+  text-transform: uppercase;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: lighter;
+  align-self: flex-end;
+  letter-spacing: 5px;
 }
 /*formatting for the conversation time stamp on the top right of page*/
 #conversationDate {
-    color: #9a9a9a;
-    font-size: 18px;
-    font-weight: lighter;
-    align-self: flex-end;
+  color: #9a9a9a;
+  font-size: 18px;
+  font-weight: lighter;
+  align-self: flex-end;
 }
 /*horizontal rule formatting for under header*/
 hr {
-    border: 1px solid #eeeeee;
+  border: 1px solid #eeeeee;
 }
 /************************/
 /* TRANSCRIPT FORMATTING*/
 /************************/
 /*wrapper class for a chat message unit consisting of a portrait and a message bubble*/
 .message-template {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
 }
 /*************************/
 /* CHAT BUBBLE FORMATTING*/
 /*************************/
 .bubble {
-    margin: 15px 40px;
-    width: 600px;
-    position: relative;
-    height: auto;
-    min-height: 100px;
-    border-radius: 5px;
-    background-color: #f3f3f3;
-    align-self: center;    
-    border: 1px solid #f3f3f3;
+  margin: 15px 40px;
+  width: 600px;
+  position: relative;
+  height: auto;
+  min-height: 100px;
+  border-radius: 5px;
+  background-color: #f3f3f3;
+  align-self: center;
+  border: 1px solid #f3f3f3;
 }
 /*arrow for primary chat bubbles, which are on the left side of the bubble*/
 .bubble.bubble-primary:before {
-    content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    left: -17px;
-	right: auto;
-    top: 30px;
-	bottom: auto;
-	border: 8px solid;
-	border-color: transparent #f3f3f3 transparent transparent;
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -17px;
+  right: auto;
+  top: 30px;
+  bottom: auto;
+  border: 8px solid;
+  border-color: transparent #f3f3f3 transparent transparent;
 }
 /*override the border color for when the bubble is the focused one*/
 .bubble.bubble-primary.bubble-focused:before {
-    border-color: transparent #ffffff transparent transparent;
+  border-color: transparent #ffffff transparent transparent;
 }
 /*arrow for secondary chat bubbles, which are on the right side of the bubble*/
 .bubble.bubble-secondary:before {
-    content: ' ';
-	position: absolute;
-	width: 0;
-	height: 0;
-    right: -17px;
-	left: auto;
-    top: 30px;
-	bottom: auto;
-	border: 8px solid;
-	border-color: transparent transparent transparent #f3f3f3;
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -17px;
+  left: auto;
+  top: 30px;
+  bottom: auto;
+  border: 8px solid;
+  border-color: transparent transparent transparent #f3f3f3;
 }
 /*override the border color for when the bubble is the focused one*/
 .bubble.bubble-secondary.bubble-focused:before {
-    border-color: transparent transparent transparent #ffffff;
+  border-color: transparent transparent transparent #ffffff;
 }
 /*modifier class for when the chat bubble is the focused one*/
 .bubble-focused {
-    background-color: #ffffff;
-    box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.13); 
-    border: 1px solid #ffffff;
+  background-color: #ffffff;
+  box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.13);
+  border: 1px solid #ffffff;
 }
 /***************************/
 /* PROFILE IMAGE FORMATTING*/
 /***************************/
 /*class to size and shape the user's profile image*/
 .portrait {
-    border-radius: 50%;
-    height: 55px;
-    width: 55px;
-    align-self: center;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  align-self: center;
 }
-    /*modifiers for the two users*/
-    .portrait-primary {
-        float: left;
-        align-self: center;
-    }
-    .portrait-secondary {
-        float: right;
-        align-self: center;
-    }
-
+/*modifiers for the two users*/
+.portrait-primary {
+  float: left;
+  align-self: center;
+}
+.portrait-secondary {
+  float: right;
+  align-self: center;
+}
 /********************************/
 /*chat bubble content formatting*/
 /********************************/
 /*formatting for the actual message content*/
 .dialogue {
-    display: flex;
-    margin: 20px;
-    line-height: 25px;
+  display: flex;
+  margin: 20px;
+  line-height: 25px;
 }
 /*wrapper class for the username and timestamp*/
 .bubble-footer {
-    display: flex;
-    align-items: center;
-    margin: 20px;
+  display: flex;
+  align-items: center;
+  margin: 20px;
 }
 /*formatting for the username*/
 .username {
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
-    padding-right: 25px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  padding-right: 25px;
 }
 /*modifier classe for the two users*/
-    .username-primary {
-        color: #ff5d5d;
-    }
-
-    .username-secondary{
-        color: #5da2ff;    
-    }
+.username-primary {
+  color: #ff5d5d;
+}
+.username-secondary {
+  color: #5da2ff;
+}
 /*formatting for the message time stamp*/
 .timestamp {
-    font-weight: bold;
-    font-size: 12px;
+  font-weight: bold;
+  font-size: 12px;
 }
-    /*adds the clock to the message time stamp*/    
-    .timestamp::before {
-        background-image: url('clock.svg');
-        background-size: 15px;
-        display: inline-block;
-        width: 15px; 
-        height: 15px;
-        content:"";
-        margin-right: 7px;
-        vertical-align: top;
-    }
+/*adds the clock to the message time stamp*/
+.timestamp::before {
+  background-image: url("clock.svg");
+  background-size: 15px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  content: "";
+  margin-right: 7px;
+  vertical-align: top;
+}
