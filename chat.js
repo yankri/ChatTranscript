@@ -3,8 +3,9 @@
   async function getConversationTranscript () {
     // in the real world, I'd put this in a config somewhere, but keeping it simple
     const endpoint = 'https://api.myjson.com/bins/18ce70'
+    // const endpoint = 'https://api.my'
     let response = await fetch(endpoint)
-    let data = await response.json().catch(x => console.log(x))
+    let data = await response.json()
     // return just the data portion that we need and not the response code etc.
     return data.data
   }
@@ -23,7 +24,7 @@
   // parameter "timestamp": a UTC date for when an individual message was sent
   const formatMessageTimestamp = (timestamp) => {
     const messageDate = new Date(timestamp)
-    // leveraging build in date formatting because dates are tricky
+    // leveraging built in date formatting because dates are tricky
     return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric' }).format(messageDate)
   }
 
@@ -88,7 +89,14 @@
   async function initializePage () {
     // make the call to the API endpoint to get the conversation history and set it to the local variable
     // to make it easier to work with the actual data and avoid the other response properties
-    let transcript = await getConversationTranscript()
+    let transcript
+    try {
+      transcript = await getConversationTranscript()
+    }
+    catch (ex) {
+      document.getElementById('transcript').innerHTML = `Your transcript is unavailable. Please try again later. Exception: ${ex}`
+      return;
+    }
 
     // creating a reference point for the chat participants so we can decide which message template to use
     // making an assumption here that the chat session was between only two participants
