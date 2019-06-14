@@ -7,7 +7,8 @@
     let response = await fetch(endpoint)
     let data = await response.json()
     // return just the data portion that we need and not the response code etc.
-    return data.data
+    if(response.ok)
+      return data.data
   }
 
   // For the dates, I'm making an assumption here that we are using en-US as our locale.
@@ -28,9 +29,8 @@
     return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric' }).format(messageDate)
   }
 
-  // generate the html for the transcript
   // parameter "primary user": the username of the first user
-  // parmaeter "messages": the array of messages from the transcript
+  // parameter "messages": the array of messages from the transcript
   const createChatTranscriptMarkup = (primaryUser, messages) => {
     // initialize an array to be used later as our return variable
     let transcriptOutput = []
@@ -86,18 +86,24 @@
         </div>`
   }
 
+  // Return a simple message to the UI just in case something goes wrong.
+  // parameter "ex": the exception that occurred
+  const errorOutput = (ex) => {
+    return document.getElementById('transcript').innerHTML = `Your transcript is unavailable. Please try again later. Exception: ${ex}`
+  }
+
   async function initializePage () {
-    // make the call to the API endpoint to get the conversation history and set it to the local variable
-    // to make it easier to work with the actual data and avoid the other response properties
     let transcript
     try {
       transcript = await getConversationTranscript()
     }
     catch (ex) {
-      document.getElementById('transcript').innerHTML = `Your transcript is unavailable. Please try again later. Exception: ${ex}`
-      return;
+      return errorOutput(ex);
     }
 
+    if(!transcript)
+      return errorOutput('No data was returned from the API');
+      
     // creating a reference point for the chat participants so we can decide which message template to use
     // making an assumption here that the chat session was between only two participants
     // Primary user is decided based on who the first message is from.
